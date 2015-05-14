@@ -1,0 +1,26 @@
+{
+	"name": "geoposition.js",
+	"version": "0.0.1",
+	"description": "Expression parser and evaluator for Angular 2.0.",
+	"author": "Rafa Macias",
+	"license": "GNU",
+	"main": "dist/cjs/geoposition.js",
+	"homepage": "git://github.com/rafamacias/geoposition",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/rafamacias/geoposition"
+	},
+	"bugs": {
+		"url": "https://github.com/angular/expressionist.js/issues"
+	},
+	"dependencies": {
+		"es6-shim": "~0.9.2"
+	},
+	"devDependencies": {
+		"gulp": "^3.5.6",
+		"gulp-connect": "~1.0.5",
+	    "pipe": "git://github.com/angular/pipe#remove-transitive-deps",
+		"gulp-traceur": "vojtajina/gulp-traceur#traceur-as-peer",
+		"traceur": "vojtajina/traceur-compiler#add-es6-pure-transformer-dist"
+	}
+}
