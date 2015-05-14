@@ -1,6 +1,5 @@
 
-
-var geoPosition = new geolocalization(function () {
+var ipLocation = new IpLocation(function () {
 	var data = this.getData();
 	var country = this.getCountry();
 	var city = this.getCity();
@@ -30,7 +29,7 @@ var geoPosition = new geolocalization(function () {
 	}]
 });
 
-geoPosition.getPosition();
+ipLocation.getPosition();
 
 function createElementDOM(text) {
 	var elem = document.createElement('div');
