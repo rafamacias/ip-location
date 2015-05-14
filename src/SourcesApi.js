@@ -1,4 +1,5 @@
-export class SourcesApi {
+
+class SourcesApi {
     constructor () {
         this.index = 0;
         this.sources = [
@@ -41,4 +42,6 @@ export class SourcesApi {
     reset() {
         this.index = 0;
     }
-}
+};
+
+module.exports = SourcesApi;

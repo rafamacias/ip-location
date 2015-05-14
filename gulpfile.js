@@ -1,37 +1,45 @@
 var gulp = require('gulp');
-var traceur = require('gulp-traceur');
-var pipe = require('pipe/gulp');
-var connect = require('gulp-connect');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
+var pkg = require('./package.json');
+var uglify = require('gulp-uglify');
+var buffer = require('vinyl-buffer');
+var browserSync = require('browser-sync');
 
 
 var path = {
   src: [
-    traceur.RUNTIME_PATH, // <-- add this
-    './src/**/*.js'
-  ]};
+    './src/' + pkg.name + '.js'
+  ],
+  dist : _getDistribution(pkg.main)
+};
 
-
-// TRANSPILE ES6
-gulp.task('build_source_amd', function() {
-  gulp.src(path.src)
-      .pipe(traceur(pipe.traceur()))
-      .pipe(gulp.dest('dist/amd'));
+gulp.task('build', function() {
+    browserify({
+      standalone: pkg.name,
+      entries: path.src,
+      debug: true
+    })
+    .transform(babelify)
+    .bundle()
+    .pipe(source(path.dist.fileDist))
+    .pipe(gulp.dest(path.dist.pathDist));
 });
 
-gulp.task('build_source_cjs', function() {
-  gulp.src(path.src)
-      .pipe(traceur(pipe.traceur({modules: 'commonjs'})))
-      .pipe(gulp.dest('dist/cjs'));
+gulp.task('production', function() {
+    browserify({
+      standalone: pkg.name,
+      entries: path.src,
+      debug: false
+    })
+    .transform(babelify)
+    .bundle()
+    .pipe(source(path.dist.fileDist))
+    .pipe(buffer()) // <----- convert from streaming to buffered vinyl file object
+    .pipe(uglify())
+    .pipe(gulp.dest(path.dist.pathDist));
 });
-
-gulp.task('build_source_es6', function() {
-  gulp.src(path.src)
-      .pipe(traceur(pipe.traceur({outputLanguage: 'es6'})))
-      .pipe(gulp.dest('dist/es6'));
-});
-
-gulp.task('build', ['build_source_cjs', 'build_source_amd', 'build_source_es6']);
-
 
 // WATCH FILES FOR CHANGES
 gulp.task('watch', function() {
@@ -39,11 +47,23 @@ gulp.task('watch', function() {
 });
 
 
-// WEB SERVER
-gulp.task('serve', connect.server({
-  root: __dirname,
-  port: 8000,
-  open: {
-    browser: 'Google Chrome'
-  }
-}));
+gulp.task('webserver', function() {
+    browserSync({
+        server: {
+            baseDir: "./"
+        }
+    });
+});
+
+
+gulp.task('default',['build', 'watch', 'webserver']);
+
+function _getDistribution(path) {
+  var aux = path.split('/');
+  var fileDist = aux[aux.length -1];
+  return {
+    fileDist: fileDist,
+    pathDist: path.replace(fileDist, '')
+
+  };
+}

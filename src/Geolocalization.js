@@ -1,9 +1,18 @@
+import Ajax from "./Ajax";
+import SourcesApi from "./SourcesApi";
 
-export class Geoposition {
 
+class Geolocalization {
 	constructor(callback, options = {}) {
-		this.sourcesApi = new SourcesApi();
+		this.logger = options.logger;
+
+		if(!callback || typeof callback !== 'function') {
+			console.error('A callback is needed');
+			return;
+		}
 		this.callback = callback;
+
+		this.sourcesApi = new SourcesApi();
 		this.currentSource = false;
 		this.currentData = null;
 
@@ -49,7 +58,7 @@ export class Geoposition {
 
 		function onSuccess(data) {
 			this._log('Data received from '+ this.currentSource.name);
-			this._log('Data : ' + data);
+			this._log(data);
 
 			this.currentData = data;
 
@@ -69,6 +78,8 @@ export class Geoposition {
 			this._log = function(text) {
 				console.log(text);
 			}
+		} else {
+			this._log = function() {};
 		}
 		return this._log(text);
 	}
@@ -112,3 +123,4 @@ export class Geoposition {
 		}
 	}
 };
+module.exports = Geolocalization;

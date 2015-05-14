@@ -1,3 +1,4 @@
+
 class Ajax {
 	constructor(options = {}) {
 		this.isJsonp = options.isJsonp;
@@ -32,7 +33,6 @@ class Ajax {
 	        this.timeout = 5000;
 		}
 	};
-
 	request(url, success, error) {
 		if(this.isJsonp) {
 			this.requestJSONP(url, success, error);
@@ -59,7 +59,6 @@ class Ajax {
 		request.send();
 		request = null;
 	}
-
 	requestJSONP(url, callback, onError) {
 
         let callbackName = this.name + Date.now().toString() + Math.floor(Math.random() * 10000000).toString() + '_' + this.requestCount;
@@ -105,4 +104,6 @@ class Ajax {
             }
         };
     }
-}
+};
+
+module.exports = Ajax;
