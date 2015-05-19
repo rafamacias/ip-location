@@ -1,0 +1,26 @@
+{
+  "name": "Ip-location",
+  "version": "0.0.1",
+  "description": "Find your location by your IP with different services without using navithe navigator.geolocation",
+  "author": "Rafa Macias",
+  "license": "GNU",
+  "main": "dist/ip-location.js",
+  "homepage": "git://github.com/rafamacias/ip-location",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rafamacias/ip-location"
+  },
+  "bugs": {
+    "url": "https://github.com/rafamacias/ip-location/issues"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.0",
+    "browser-sync": "^2.7.1",
+    "browserify": "^10.1.3",
+    "gulp": "^3.5.6",
+    "gulp-babel": "^5.1.0",
+    "gulp-uglify": "^1.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
