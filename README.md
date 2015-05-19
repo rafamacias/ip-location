@@ -7,6 +7,7 @@ Find the location of the user based on the IP with different services.
 `#: git clone git://github.com/coverflowjs/coverflow.git`
 
 `#: cd coverflow`
+
 `#: npm install`
 
 `#: gulp build`
@@ -55,6 +56,17 @@ sources = {
 }
 ```
 
+#### API generated once the positions has been received. 
+
+- getData()
+
+- getCountry()
+
+- getCity()
+
+- getCoordinates()
+
+
 ### Options for the constructor
 - logger (boolean) default false.
 
@@ -74,9 +86,10 @@ sources = {
 }
 ```
 
-
 ## Examples
 
 `#: gulp build`
+
 `#: gulp webserver`
+
 And then go to [examples](http://localhost:3000/examples/).
