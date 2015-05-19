@@ -2,7 +2,7 @@
 
 Find the location of the user based on the IP with different services.
 
-Done in ES6 and brought to the browser with Babel and Browserify
+Done in ES6 and brought to the browser with [Babeljs](http://babeljs.io/) and [Browserify](http://browserify.org/)
 
 ## Getting Started
 
@@ -16,18 +16,21 @@ Done in ES6 and brought to the browser with Babel and Browserify
 
 ## USAGE
 
-It exposes the a global variable `IpLocation
+Add the file in `Dist` folder to your HTML
 
-```javascript
-var instance = new IpLocation();
-instance.getPosition()
-	.success(function(data) {
-		//Do something with the Data received.
-		console.log(data);
-	})
-	.error(function() {
-		console.log('No service available :-( ');
-	});
+```html
+  <script src="../dist/ip-location.js"></script>
+  <script>
+	var instance = new IpLocation();
+	instance.getPosition()
+		.success(function(data) {
+			//Do something with the Data received.
+			console.log(data);
+		})
+		.error(function() {
+			console.log('No service available :-( ');
+		});
+  </script>
 ```
 
 ## Documentation

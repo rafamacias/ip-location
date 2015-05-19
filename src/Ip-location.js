@@ -1,6 +1,7 @@
-import Ajax from "./Ajax";
 import SourcesApi from "./SourcesApi";
 
+//Remove this line if you want to use your Ajax system, like jQuery.getJSON
+import Ajax from "./Ajax";
 
 class Geolocalization {
 	constructor(options = {}) {
