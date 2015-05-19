@@ -8,7 +8,7 @@ Done in ES6 and brought to the browser with [Babeljs](http://babeljs.io/) and [B
 
 `#: git clone git://github.com/rafamacias/ip-location.git`
 
-`#: cd coverflow`
+`#: cd ip-location`
 
 `#: npm install`
 
