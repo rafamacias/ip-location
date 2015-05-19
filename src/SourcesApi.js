@@ -7,18 +7,11 @@ class SourcesApi {
                 name: 'freegeoip',
                 url: '//freegeoip.net/json/',
                 country: 'country_name',
-                timezone: 'time_zone',
-                ajaxOptions : {
-                    isJsonp : true,
-                    callbackName : 'callback'
-                }
+                timezone: 'time_zone'
             },
             {
                 name: 'telize',
-                url: '//www.telize.com/geoip',
-                ajaxOptions : {
-                    isJsonp : false
-                }
+                url: '//www.telize.com/geoip'
             }
         ];
     };
@@ -31,7 +24,7 @@ class SourcesApi {
                 };
             //it is a simple source
             } else {
-        this.sources.unshift(sources);
+                this.sources.unshift(sources);
             }
     };
 

@@ -73,17 +73,17 @@ class Ajax {
         url += this.fnName + '=' + callbackName;
 
         // add to the DOM
-    		let script = new this.ScriptDOM(url);
-    		script.add();
-    
-    		//to capture the error
-    		let timeId = setTimeout(abortJSONP, this.timeout);
-    
-    		function abortJSONP () {
-    			script.remove();
-    			callback = false;
-    			onError();
-    		}
+		let script = new this.ScriptDOM(url);
+		script.add();
+
+		//to capture the error
+		let timeId = setTimeout(abortJSONP, this.timeout);
+
+		function abortJSONP () {
+			script.remove();
+			callback = false;
+			onError();
+		}
         function addExternal(name, fn) {
             window[name] = fn;
         }

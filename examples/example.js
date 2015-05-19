@@ -1,5 +1,17 @@
 
-var ipLocation = new IpLocation(function () {
+
+var ipLocation = new IpLocation({
+	logger: true
+});
+
+ipLocation.getPosition()
+	.success(onPositionReceived)
+	.error(function(){
+		console.log('Error receiving Data. Try adding a new source with addSource')
+	});
+
+
+function onPositionReceived(data) {
 	var data = this.getData();
 	var country = this.getCountry();
 	var city = this.getCity();
@@ -16,20 +28,7 @@ var ipLocation = new IpLocation(function () {
 
 	//console.log(text);
 	createElementDOM(text);
-}, {
-	logger: alert,
-	sources: [{
-		name: 'freegeoip2',
-		url: '//freegeoip.net/json/',
-		country: 'country_name',
-		timezone: 'time_zone'
-	}, {
-		name: 'telize2',
-		url: '//www.telize.com/geoip'
-	}]
-});
-
-ipLocation.getPosition();
+}
 
 function createElementDOM(text) {
 	var elem = document.createElement('div');

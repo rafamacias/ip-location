@@ -3,17 +3,16 @@ import SourcesApi from "./SourcesApi";
 
 
 class Geolocalization {
-	constructor(callback, options = {}) {
+	constructor(options = {}) {
 		this.logger = options.logger;
 
-		if(!callback || typeof callback !== 'function') {
-			console.error('A callback is needed');
-			return;
-		}
-		this.callback = callback;
-
 		this.sourcesApi = new SourcesApi();
+		
 		this.currentSource = false;
+
+		this.hasFailed = false;
+		this.hasSuccess = false;
+
 		this.currentData = null;
 
 		//The app can log to the normal console or to a custom function passed
@@ -52,9 +51,15 @@ class Geolocalization {
 				}
 		
 		} else {
+			this.hasFailed = true;
 			this._log('There is no service available right now. Try later on;');
 			this.sourcesApi.reset();
+			if(this.onError) {
+				this.onError();
+			}
 		}
+
+		return this;
 
 		function onSuccess(data) {
 			this._log('Data received from '+ this.currentSource.name);
@@ -68,8 +73,33 @@ class Geolocalization {
 			//The sources are reset in case the wants to call again to get position
 			this.sourcesApi.reset();
 
-			this.callback(data);
+			this.hasSuccess = true;
+			if(this.callback) {
+				this.callback(data);	
+				this.hasSuccess = false;
+			}
 		}
+	}
+
+	addSources(sources) {
+		this.sourcesApi.addSource(sources);
+		return this;
+	}
+
+	error (callback) {
+		this.onError = callback;
+		if(this.hasFailed) {
+			callback();
+		}
+		return this;
+	}
+
+	success (callback) {
+		this.callback = callback;
+		if(this.hasSuccess && this.currentData) {
+			callback(this.currentData);
+		}
+		return this;
 	}
 
 	//private method that can't be private
