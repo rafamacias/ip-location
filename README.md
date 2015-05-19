@@ -4,9 +4,12 @@ Find the location of the user based on the IP with different services.
 
 ## Getting Started
 
-` npm install`
+`#: git clone git://github.com/coverflowjs/coverflow.git`
 
-` gulp build`
+`#: cd coverflow`
+`#: npm install`
+
+`#: gulp build`
 
 ## USAGE
 
@@ -16,11 +19,11 @@ It exposes the a global variable `IpLocation
 var instance = new IpLocation();
 instance.getPosition()
 	.success(function(data) {
-		//Do somthieng with the Data received.
+		//Do something with the Data received.
 		console.log(data);
 	})
 	.error(function() {
-		console.log('No service available :( ');
+		console.log('No service available :-( ');
 	});
 ```
 
@@ -28,20 +31,20 @@ instance.getPosition()
 
 ### API public methods
 
- - getPosition()
+- getPosition()
 
  Looks for the current position. Returns the instance.
 
- - success(callback)
+- success(callback)
 
  An asyncronous callback with the data received from the getPosition. Returns the instance.
 
- - error(callback)
+- error(callback)
 
  Callback to execute if the services are not available. Returns the instance.
 
 
- -addSource(sources)
+- addSource(sources)
 
  Allows to add new sources to the IpLocation after the instanstiation. Sources can be an object or an array of objects. Returns the instance.
 
@@ -55,15 +58,15 @@ sources = {
 ### Options for the constructor
 - logger (boolean) default false.
 
-If want to log to the console
+ If want to log to the console
 
 - ajaxRequest (function)
 
-If want to add jQuery.getJSON for the Ajax requests
+ If want to add jQuery.getJSON for the Ajax requests
 
 - sources (object)
 
-To add new sources on initialisation. These sources will be checked first.
+ To add new sources on initialisation. These sources will be checked first.
 ```javascript
 sources = {
 	name: 'newService',
@@ -74,8 +77,6 @@ sources = {
 
 ## Examples
 
-` gulp build`
-
-` gulp webserver`
-
-And go to [examples](http://localhost:3000/examples/).
+`#: gulp build`
+`#: gulp webserver`
+And then go to [examples](http://localhost:3000/examples/).
