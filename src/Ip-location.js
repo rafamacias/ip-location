@@ -117,38 +117,46 @@ class Geolocalization {
 
 	//private method that can't be private
 	 _createDataAPI () {
+
+	 	function getSpecificData(currentData, key) {
+			key = key.split('.');
+			let result = currentData;
+
+			for(var i = 0; i < key.length; i++ ){
+				result = result[key[i]];
+			}
+			return result;
+	 	}
+
 		this.getData = function (){
-			return this.currentData;
+			return this.currentData || '';
 		}
 
 		this.getCity = function (){
 			if(this.currentSource){
-				let city = this.currentSource.city || 'city';
-				return this.currentData[city];
+				return getSpecificData(this.currentData, this.currentSource.city || 'city') || '';
 			}
 			return '';
 		}
 
 		this.getCountry = function () {
 			if(this.currentSource){
-				let country = this.currentSource.country || 'country';
-				return this.currentData[country];
+				return getSpecificData(this.currentData, this.currentSource.country || 'country') || '';
 			}
 			return '';
 		}
 
 		this.getCoordinates = function () {
 			if(this.currentSource){
-				let longitude = this.currentSource.longitude || 'longitude';
-				let latitude = this.currentSource.latitude || 'latitude';
-				return this.currentData[latitude] + ', '+ this.currentData[longitude];
+				let longitude = getSpecificData(this.currentData, this.currentSource.longitude || 'longitude');
+				let latitude = getSpecificData(this.currentData, this.currentSource.latitude || 'latitude');
+				return (longitude && latitude) ? longitude + ', '+ latitude : '';
 			}
 			return '';
 		}
 		this.getTimezone = function () {
 			if(this.currentSource){
-				let timezone = this.currentSource.timezone || 'timezone';
-				return this.currentData[timezone];
+				return getSpecificData(this.currentData, this.currentSource.timezone || 'timezone') || '';
 			}
 			return '';
 		}

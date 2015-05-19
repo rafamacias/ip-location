@@ -12,6 +12,15 @@ class SourcesApi {
             {
                 name: 'telize',
                 url: '//www.telize.com/geoip'
+            },
+            {
+                name: 'geoip2',
+                url: 'https://js.maxmind.com/geoip/v2.1/city/me?referrer=http://a',
+                country: 'country.names.en',
+                city: 'city.names.en',
+                longitude: 'location.longitude',
+                latitude: 'location.latitude',
+                timezone: 'location.time_zone'
             }
         ];
     };
