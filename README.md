@@ -2,6 +2,8 @@
 
 Find the location of the user based on the IP with different services.
 
+Done in ES6 and brought to the browser with Babel and Browserify
+
 ## Getting Started
 
 `#: git clone git://github.com/coverflowjs/coverflow.git`
