@@ -6,7 +6,7 @@ Done in ES6 and brought to the browser with [Babeljs](http://babeljs.io/) and [B
 
 ## Getting Started
 
-`#: git clone git://github.com/coverflowjs/coverflow.git`
+`#: git clone git://github.com/rafamacias/ip-location.git`
 
 `#: cd coverflow`
 
